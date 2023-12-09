@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package user;
+
+option go_package = "golang_express_grpc/user";
+
+message User {
+  string id = 1;
+  string username = 2;
+  string email = 3;
+  string avatar = 4;
+}
+
+message CreateUserResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+message UserRequest {
+  string id = 1;
+}
+
+message CreateUserRequest {
+  string id = 1;
+  string username = 2;
+  string email = 4;
+  string avatar = 5;
+  string token = 6;
+}
+
+message GetUserByEmailResponse {
+  string id = 1;
+  string username = 2;
+  string email = 4;
+  string avatar = 5;
+  string token = 6;
+}
+
+
+message UserEmailRequest {
+  string email = 1;
+}
+
+message GetAllUserRequest {
+}
+
+message GetAllUserResponse {
+  repeated User data = 1;
+}
+
+message UpdateUserResponse {
+  bool success = 1;
+  string message = 2;
+}
+
+
+message UpdateUserRequest {
+  string id = 1;
+  string username = 2;
+  string email = 4;
+  string avatar = 5;
+  string token = 6;
+}
+
+
+service UserService {
+  rpc GetUser(UserRequest) returns (User);
+  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse);
+  rpc GetUserByEmail(UserEmailRequest) returns (GetUserByEmailResponse);
+  rpc GetAllUser(GetAllUserRequest) returns (GetAllUserResponse);
+  rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse);
+}
+
+
+
